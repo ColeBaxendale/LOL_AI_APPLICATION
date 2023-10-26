@@ -6,12 +6,13 @@ api_client = RiotApi()
 puuid = api_client.get_puuid_by_name(summoner_name)
 print(f"PUUID: {puuid}")
 match_ids = api_client.get_match_ids(puuid)
-print(f"MATCH IDS: {match_ids}") # 1 match
+
 for match_id in match_ids:
     match_data = api_client.get_match_details(match_id)
 
     game_duration = match_data['info']['gameDuration'] / 60
     if match_data['info']['queueId'] in RiotApi.RANKED_QUEUE_IDS and game_duration > 15:
+        print(f"MATCH IDS: {match_id}") # 1 match
         participant_id = None
         match_timeline = api_client.get_match_timeline(match_id)
         events = []
