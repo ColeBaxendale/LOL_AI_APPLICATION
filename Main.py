@@ -1,42 +1,89 @@
-import requests
+# Usage
+from Riot_APIS import RiotApi
 
-from Fetch_Data_Riot_API import RiotApiClient
-from Fetch_Recent_Game_Ids import Get_Recent_Game_Ids
-from Fetch_Death_Data import Fetch_Death_Data
+summoner_name = 'BasicallyClutch'
+api_client = RiotApi()
+puuid = api_client.get_puuid_by_name(summoner_name)
+print(f"PUUID: {puuid}")
+match_ids = api_client.get_match_ids(puuid)
+print(f"MATCH IDS: {match_ids}") # 1 match
+for match_id in match_ids:
+    match_data = api_client.get_match_details(match_id)
 
-class Main:
+    game_duration = match_data['info']['gameDuration'] / 60
+    if match_data['info']['queueId'] in RiotApi.RANKED_QUEUE_IDS and game_duration > 15:
+        participant_id = None
+        match_timeline = api_client.get_match_timeline(match_id)
+        events = []
+        for participant in match_timeline['info']['participants']:
+            if participant['puuid'] == puuid:
+                participant_id = participant['participantId']
+        print(participant_id)
+        for frame in match_timeline['info']['frames']:
+            for event in frame['events']:
+                if event['type'] == 'CHAMPION_KILL':
+                    if event['killerId'] == participant_id:
+                        events.append("kill")
 
-    def __init__(self):
-        # Initialize the Riot API client with your API key
-        self.api_client = RiotApiClient()
+        print(events)
+            
 
-        # Ranked queue IDs, these can be hardcoded or passed during instantiation
-        self.ranked_queue_ids = [420, 440]  # Ranked Solo & Ranked Flex
 
-        # Initialize GetInGameData with the API client and ranked queue IDs
-        self.game_data_fetcher = Get_Recent_Game_Ids(self.api_client, self.ranked_queue_ids)
+    
 
-        # Initialize DeathAnalysis class
-        self.death_analyzer = Fetch_Death_Data()
 
-    def run(self, summoner_name):
-        # Fetch match data for the given summoner
-        match_ids_data = self.game_data_fetcher.fetch_data_for_summoner(summoner_name)
 
-        for match in match_ids_data:
-            match_id = match['match_id']
-            match_data = self.api_client.get_match_details(match_id)
 
-            # Extract death data for the match
-            death_data = self.death_analyzer.extract_death_data(match_data, summoner_name)
 
-            # Print out the match ID and death data
-            print(f"Match ID: {match_id}")
-            for death in death_data:
-                print(death)
-            print("\n")  # Separate different matches with a newline
 
-if __name__ == "__main__":
-    # Instantiate the main class and run the process for a specific summoner
-    main_app = Main()
-    main_app.run('BasicallyClutch')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# api_client = RiotApiClient()
+
+# # Fetch the PUUID for the summoner with the name 'BasicallyClutch'
+# puuid = api_client.get_puuid_by_name('BasicallyClutch')
+
+# # Fetch the match IDs for the retrieved PUUID
+# match_ids = api_client.get_match_ids(puuid)
+
+# # Iterate over each match ID
+# for match_id in match_ids:
+
+#     # Fetch detailed information for each match
+#     match_data = api_client.get_match_details(match_id)
+    
+#     match_timeline = api_client.get_match_timeline(match_id)
+
+#     # Convert the game duration from seconds to minutes
+#     game_duration = match_data['info']['gameDuration'] / 60  
+    
+#     # Filter out non-ranked matches and matches that lasted less than 15 minutes
+#     if match_data['info']['queueId'] in RiotApiClient.RANKED_QUEUE_IDS and game_duration > 15:
+#         participant_id = api_client.get_most_recent_match_participant_id(summoner_name)
+#         # Iterate over each participant in the match
+#         for participant in match_data['info']['participants']:
+#             # Check if the current participant is the summoner we are interested in
+#             if participant['summonerName'] == 'BasicallyClutch':
+#                 # Extract KDA, damage dealt to champions, and vision score for the summoner
+#                 kda = (participant['kills'], participant['deaths'], participant['assists'])
+#                 damage = participant['totalDamageDealtToChampions']
+#                 vision = participant['visionScore']
+                
+#                 # Print the retrieved statistics for the summoner
+#                 print(f"Match ID: {match_id}, KDA: {kda}, Damage: {damage}, Vision: {vision}")
+
