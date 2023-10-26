@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./API_SERVER",
+        "./API_CONNECTION"
+    ]
+}
