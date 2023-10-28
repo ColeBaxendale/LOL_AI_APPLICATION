@@ -80,7 +80,25 @@ class Participant:
                 f"{self.isSummoner}")
         
        
+class Kill_Data:
+    def __init__(self, kill_data):
+        self.killer_id = kill_data['victimId']
+        self.killer_name = kill_data['victimName']
+        self.killer_champ = kill_data['victimChampion']
+        self.kill_count = kill_data['assistingPlayers'].__len__() + 1
+        self.total_damage = int(kill_data['goldEarned'])
+        self.deaths = kill_data['numDeaths']
+        self.time = kill_data['timestamp']
+        def __str__(self):
+            return (f"Killed by: ID: {self.killer_id} Name: {self.killer_name} Champ
+                    : {self.killer_champ}\n"
+                    f"Kill Count: {self.kill_count}\n"
+                    f"Total Damage: {self.total_damage}\n"
+                    f"Deaths: {self.deaths}\n"
+                    f"Time: {self.time}")
+        
 
+        
 
         
 
