@@ -28,16 +28,10 @@ class RiotApi:
         return response.json()
 
     def get_match_timeline(self, match_id):
-        url = f'https://americas.api.riotgames.com/lol/match/v4/matches/{match_id}/timeline'
+        url = f'https://americas.api.riotgames.com/lol/match/v5/matches/{match_id}/timeline'
         headers = {'X-Riot-Token': self.API_KEY}
         response = requests.get(url, headers=headers)
         response.raise_for_status()
         return response.json()
-    
-    def get_participant_id(self, match_id, summoner_name):
-        url = f'https://americas.api.riotgames.com/lol/match/v4/matches/{match_id}'
-        headers = {'X-Riot-Token': self.API_KEY}
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        return response.json()
+
     

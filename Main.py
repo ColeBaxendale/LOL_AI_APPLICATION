@@ -1,53 +1,37 @@
+from Get_Matches import Get_Match_Data, Get_Matches_List
 from Riot_APIS import RiotApi
 from RIOT_API_SERVER_STATUS.Server_Online import ServerStatusChecker
 
 
+get_matches_instance = Get_Matches_List()
+get_match_data_instance = Get_Match_Data()
+summoner_name = 'BasicallyClutch'
+match_list_data = get_matches_instance.get_match_list(summoner_name)
+for match in match_list_data:
+    participants = get_match_data_instance.get_summoner_participants(match,summoner_name)
+    summoner = None
+    for parparticipant in participants:
+        if parparticipant.isSummoner == True:
+            summoner = parparticipant
+        print(parparticipant)
+    print(summoner)
 
-class MyApp:
-    def __init__(self):
-        self.server_checker = ServerStatusChecker()
-        self.riot_api = RiotApi()
+    #     match_timeline = api_client.get_match_timeline(match_id)
+    #     events = []
+        # for frame in match_timeline['info']['frames']:
+        #     for event in frame['events']:
+        #         event_type = event["type"]
+        #         participant_id_str = f'Participant: {event["participantId"]}' if "participantId" in event else ""
+        #         timestamp = event["timestamp"]
+        #         position_str = f'Position: {event["position"]}' if "position" in event else ""
+                
+        #         print(f'Event: {event_type} {participant_id_str} timestamp: {timestamp} {position_str}')
+                
+                # Uncomment below if you want to track kills by the participant
+                # if event['type'] == 'CHAMPION_KILL':
+                #     if event['killerId'] == participant_id:
+                #         events.append("kill")
 
-    def run(self):
-        if self.server_checker.server_online():
-            print('RUN PROGRAM')
-        else:
-            print("Sorry, a server is offline; cannot get data")
-
-if __name__ == "__main__":
-    app = MyApp()
-    app.run()
-
-
-
-
-
-# summoner_name = 'BasicallyClutch'
-# api_client = RiotApi()
-# puuid = api_client.get_puuid_by_name(summoner_name)
-# print(f"PUUID: {puuid}")
-# match_ids = api_client.get_match_ids(puuid)
-
-# for match_id in match_ids:
-#     match_data = api_client.get_match_details(match_id)
-
-#     game_duration = match_data['info']['gameDuration'] / 60
-#     if match_data['info']['queueId'] in RiotApi.RANKED_QUEUE_IDS and game_duration > 15:
-#         print(f"MATCH IDS: {match_id}") # 1 match
-#         participant_id = None
-#         match_timeline = api_client.get_match_timeline(match_id)
-#         events = []
-#         for participant in match_timeline['info']['participants']:
-#             if participant['puuid'] == puuid:
-#                 participant_id = participant['participantId']
-#         print(participant_id)
-#         for frame in match_timeline['info']['frames']:
-#             for event in frame['events']:
-#                 if event['type'] == 'CHAMPION_KILL':
-#                     if event['killerId'] == participant_id:
-#                         events.append("kill")
-
-#         print(events)
             
 
 
