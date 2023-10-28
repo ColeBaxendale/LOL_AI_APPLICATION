@@ -2,5 +2,9 @@
     "python.analysis.extraPaths": [
         "./API_SERVER",
         "./API_CONNECTION"
-    ]
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
 }

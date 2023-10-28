@@ -16,7 +16,7 @@ class Get_Matches_List:
             if get_match_data.is_match_valid(match_data):
                 valid_match.append(match_data)
                 count += 1  
-
+        del match_ids
         return valid_match
 
 class Get_Match_Data:
