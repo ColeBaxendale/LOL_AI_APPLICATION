@@ -1,25 +1,37 @@
-from Get_Matches import Get_Match_Data, Get_Matches_List
+from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Match_Data, Get_Match_Timeline, Get_Matches_List
 from Riot_APIS import RiotApi
 from RIOT_API_SERVER_STATUS.Server_Online import ServerStatusChecker
 
 
 get_matches_instance = Get_Matches_List()
 get_match_data_instance = Get_Match_Data()
+get_match_timeline_instance = Get_Match_Timeline()
+
+
+
 summoner_name = 'BasicallyClutch'
+summoner = None
+
 match_list_data = get_matches_instance.get_match_list(summoner_name)
 for match in match_list_data:
-    participants = get_match_data_instance.get_summoner_participants(match,summoner_name)
-    summoner = None
+    match_data = match["match_data"]
+    participants = get_match_data_instance.get_summoner_participants(match_data,summoner_name)
     for parparticipant in participants:
         if parparticipant.isSummoner == True:
             summoner = parparticipant
         print(parparticipant)
     print(summoner)
+    timeline = get_match_timeline_instance.get_match_timeline(match['match_id'])
+    events = get_match_timeline_instance.get_events(timeline)
+    deaths = get_match_timeline_instance.get_deaths(events, summoner.id)
+    print(deaths)
 
-    #     match_timeline = api_client.get_match_timeline(match_id)
-    #     events = []
-        # for frame in match_timeline['info']['frames']:
-        #     for event in frame['events']:
+
+    
+    
+    
+
+
         #         event_type = event["type"]
         #         participant_id_str = f'Participant: {event["participantId"]}' if "participantId" in event else ""
         #         timestamp = event["timestamp"]
