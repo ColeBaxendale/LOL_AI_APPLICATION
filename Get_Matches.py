@@ -1,3 +1,4 @@
+from Participant_Class import Participant
 from Riot_APIS import RiotApi
 
 class Get_Matches_List:
@@ -8,7 +9,6 @@ class Get_Matches_List:
         valid_match = []
         count = 0
         match_ids = api_client.get_match_ids(puuid)
-
         i = 0
         n = len(match_ids) - 1
         while count < 1:
@@ -53,50 +53,6 @@ class Get_Match_Data:
 
 
 
-
-
-class Participant:
-    def __init__(self, participant_data,summoner_name):
-        self.id = participant_data['participantId']
-        self.name = participant_data['summonerName']
-        self.champion = participant_data['championName']
-        self.role = participant_data['teamPosition']
-        self.team = participant_data['teamId']
-        if self.team == 100:
-            self.team = 'Blue'
-        else:
-            self.team = 'Red'
-        self.isSummoner = False
-        if self.name == summoner_name:
-            self.isSummoner = True
-        
-
-    def __str__(self):
-        return (f"ID: {self.id}, "
-                f"Champion: {self.champion}, "
-                f"Name: {self.name}, "
-                f"Role: {self.role}, "
-                f"Team: {self.team}, "
-                f"{self.isSummoner}")
-        
-       
-class Kill_Data:
-    def __init__(self, kill_data):
-        self.killer_id = kill_data['victimId']
-        self.killer_name = kill_data['victimName']
-        self.killer_champ = kill_data['victimChampion']
-        self.kill_count = kill_data['assistingPlayers'].__len__() + 1
-        self.total_damage = int(kill_data['goldEarned'])
-        self.deaths = kill_data['numDeaths']
-        self.time = kill_data['timestamp']
-        def __str__(self):
-            return (f"Killed by: ID: {self.killer_id} Name: {self.killer_name} Champ
-                    : {self.killer_champ}\n"
-                    f"Kill Count: {self.kill_count}\n"
-                    f"Total Damage: {self.total_damage}\n"
-                    f"Deaths: {self.deaths}\n"
-                    f"Time: {self.time}")
-        
 
         
 
