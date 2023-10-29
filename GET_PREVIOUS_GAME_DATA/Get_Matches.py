@@ -64,6 +64,15 @@ class Get_Match_Timeline:
                     deaths.append("death")
         return deaths
     
+    def get_kills(self, events, participant_id):
+        kills = []
+        for event in events:
+            if event['type'] == 'CHAMPION_KILL':
+                if event['killerId'] == participant_id:
+                    kills.append("kill")
+        return kills
+    
+    
     
     def get_match_timeline(self,match_id):
         api_client = RiotApi()

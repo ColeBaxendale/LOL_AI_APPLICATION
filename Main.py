@@ -24,7 +24,9 @@ for match in match_list_data:
     timeline = get_match_timeline_instance.get_match_timeline(match['match_id'])
     events = get_match_timeline_instance.get_events(timeline)
     deaths = get_match_timeline_instance.get_deaths(events, summoner.id)
+    kills = get_match_timeline_instance.get_kills(events, summoner.id)
     print(deaths)
+    print(kills)
 
 
     
