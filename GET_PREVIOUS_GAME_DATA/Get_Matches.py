@@ -48,6 +48,11 @@ class Get_Match_Data:
     
 class Get_Match_Timeline:
     
+    def get_match_timeline(self,match_id):
+        api_client = RiotApi()
+        match_timeline = api_client.get_match_timeline(match_id)
+        return match_timeline
+    
     def get_events(self, match_timeline):
         events = []
         for frame in match_timeline['info']['frames']:
@@ -80,11 +85,7 @@ class Get_Match_Timeline:
                     assists.append("assist")
         return assists
     
-    def get_match_timeline(self,match_id):
-        api_client = RiotApi()
-        match_timeline = api_client.get_match_timeline(match_id)
-        return match_timeline
-    
+
 
 
 
