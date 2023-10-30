@@ -1,4 +1,4 @@
-from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Match_Data, Get_Match_Timeline, Get_Matches_List
+from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Kills_Deaths_Assists, Get_Match_Data, Get_Match_Timeline, Get_Matches_List
 from Riot_APIS import RiotApi
 from RIOT_API_SERVER_STATUS.Server_Online import ServerStatusChecker
 
@@ -6,7 +6,7 @@ from RIOT_API_SERVER_STATUS.Server_Online import ServerStatusChecker
 get_matches_instance = Get_Matches_List()
 get_match_data_instance = Get_Match_Data()
 get_match_timeline_instance = Get_Match_Timeline()
-
+get_kills_deaths_assists_instance = Get_Kills_Deaths_Assists()
 
 
 summoner_name = 'BasicallyClutch'
@@ -17,80 +17,35 @@ for match in match_list_data:
     match_data = match["match_data"]
     participants = get_match_data_instance.get_summoner_participants(match_data,summoner_name)
     for parparticipant in participants:
+        print(parparticipant)
         if parparticipant.isSummoner == True:
             summoner = parparticipant
     timeline = get_match_timeline_instance.get_match_timeline(match['match_id'])
     events = get_match_timeline_instance.get_events(timeline)
-    deaths = get_match_timeline_instance.get_deaths(events, summoner.id)
-    kills = get_match_timeline_instance.get_kills(events, summoner.id)
-    assists = get_match_timeline_instance.get_assists(events, summoner.id)
+    
+    kills = get_kills_deaths_assists_instance.get_kills(events, summoner.id)[0]
+    deaths = get_kills_deaths_assists_instance.get_kills(events, summoner.id)[1]
+
 
     for kill in kills:
         victim_champion = participants[kill.victim_id].champion
         assist_champ_ids = kill.assisting_participant_ids
+        assisting_champion = []
         if assist_champ_ids == 0:
-            print(f"@ {kill.timestamp} {summoner_name} ({participants[kill.killer_id].champion}) killed {victim_champion} @ {kill.position}, with no help!")
+            print(f"@ {kill.timestamp} {summoner_name} ({participants[kill.killer_id].champion}) killed {victim_champion} with no help! @ {kill.position}")
         else:
-            print(f"@ {kill.timestamp} {summoner_name} ({participants[kill.killer_id].champion}) killed {victim_champion} @ {kill.position}, with the help of {kill.assisting_participant_ids}!")
+            for champId in assist_champ_ids:
+                assisting_champion.append(participants[champId].champion)
+            print(f"@ {kill.timestamp} {summoner_name} ({participants[kill.killer_id].champion}) killed {victim_champion} with the help of {assisting_champion}! @ {kill.position}")
 
+    for death in deaths:
+        killed_by_champion = participants[death.killer_id].champion
+        assist_champ_ids = death.assisting_participant_ids
+        assisting_champion = []
+        if assist_champ_ids == 0:
+            print(f"@ {death.timestamp} {summoner_name} ({participants[death.victim_id].champion}) died to {killed_by_champion} with no help! @ {death.position}")
+        else:
+            for champId in assist_champ_ids:
+                assisting_champion.append(participants[champId].champion)
             
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# api_client = RiotApiClient()
-
-# # Fetch the PUUID for the summoner with the name 'BasicallyClutch'
-# puuid = api_client.get_puuid_by_name('BasicallyClutch')
-
-# # Fetch the match IDs for the retrieved PUUID
-# match_ids = api_client.get_match_ids(puuid)
-
-# # Iterate over each match ID
-# for match_id in match_ids:
-
-#     # Fetch detailed information for each match
-#     match_data = api_client.get_match_details(match_id)
-    
-#     match_timeline = api_client.get_match_timeline(match_id)
-
-#     # Convert the game duration from seconds to minutes
-#     game_duration = match_data['info']['gameDuration'] / 60  
-    
-#     # Filter out non-ranked matches and matches that lasted less than 15 minutes
-#     if match_data['info']['queueId'] in RiotApiClient.RANKED_QUEUE_IDS and game_duration > 15:
-#         participant_id = api_client.get_most_recent_match_participant_id(summoner_name)
-#         # Iterate over each participant in the match
-#         for participant in match_data['info']['participants']:
-#             # Check if the current participant is the summoner we are interested in
-#             if participant['summonerName'] == 'BasicallyClutch':
-#                 # Extract KDA, damage dealt to champions, and vision score for the summoner
-#                 kda = (participant['kills'], participant['deaths'], participant['assists'])
-#                 damage = participant['totalDamageDealtToChampions']
-#                 vision = participant['visionScore']
-                
-#                 # Print the retrieved statistics for the summoner
-#                 print(f"Match ID: {match_id}, KDA: {kda}, Damage: {damage}, Vision: {vision}")
-
+            print(f"@ {death.timestamp} {summoner_name} ({participants[death.victim_id].champion}) died to {killed_by_champion} with the help of {assisting_champion}! @ {death.position}")
