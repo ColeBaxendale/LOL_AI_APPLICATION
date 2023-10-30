@@ -1,8 +1,9 @@
-from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Kills_Deaths_Assists, Get_Match_Data, Get_Match_Timeline, Get_Matches_List
+from GET_PREVIOUS_GAME_DATA.Get_Match_List import Get_Matches_List
+from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Kills_Deaths_Assists, Get_Match_Data, Get_Match_Timeline
 from UTILITIES.Riot_APIS import RiotApi
 
 
-get_matches_instance = Get_Matches_List()
+get_match_list_instance = Get_Matches_List()
 get_match_data_instance = Get_Match_Data()
 get_match_timeline_instance = Get_Match_Timeline()
 get_kills_deaths_assists_instance = Get_Kills_Deaths_Assists()
@@ -11,7 +12,7 @@ get_kills_deaths_assists_instance = Get_Kills_Deaths_Assists()
 summoner_name = 'BasicallyClutch'
 summoner = None
 
-match_list_data = get_matches_instance.get_match_list(summoner_name)
+match_list_data = get_match_list_instance.get_match_list(summoner_name)
 for match in match_list_data:
     match_data = match["match_data"]
     participants = get_match_data_instance.get_summoner_participants(match_data,summoner_name)

@@ -3,7 +3,7 @@ import requests
 
 class RiotApi:
     BASE_URL = 'https://na1.api.riotgames.com/lol/'
-    API_KEY = 'RGAPI-f36ac1fa-5d26-439c-a4a1-68c0e48fd117'
+    API_KEY = 'RGAPI-f36ac1fa-5d26-439c-a4a1-68c0e48fd117' # Add secrets
     RANKED_QUEUE_IDS = [420, 440]
 
     def get_puuid_by_name(self, summoner_name):
