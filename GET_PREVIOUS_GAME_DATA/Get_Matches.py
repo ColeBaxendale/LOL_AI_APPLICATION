@@ -43,7 +43,7 @@ class Get_Match_Data:
         participants = []
         participants_details = match_data['info']['participants']
         for participant in participants_details:
-            participants .append(Participant(participant, summoner_name))
+            participants.append(Participant(participant, summoner_name))
         return participants
     
 
@@ -84,7 +84,11 @@ class Get_Kills_Deaths_Assists:
                     death = self.extract_death_data(event,participant_id)
                     if death is not None:
                         deaths_event.append(death)
-        return kills_event, deaths_event
+                elif 'assistingParticipantIds' in event and participant_id in event['assistingParticipantIds']:
+                    assist = self.extract_assist_data(event, participant_id)
+                    if assist is not None:
+                        assist_event.append(assist)
+        return kills_event, deaths_event, assist_event
 
     def extract_kill_data(self, event,participant_id):
         required_keys = ['position', 'timestamp', 'victimId']
@@ -137,7 +141,23 @@ class Get_Kills_Deaths_Assists:
         else:
             return None
             
-        
+    def extract_assist_data(self, event,participant_id):
+        required_keys = ['position', 'killerId', 'victimId']
+        all_keys_except_assist = all(key in event for key in required_keys)
+        has_assist = 'assistingParticipantIds' in event
+
+        if all_keys_except_assist and has_assist:  # If both conditions are True
+            
+            kill = Kill(
+                assisting_participant_ids=[aid - 1 for aid in event.get('assistingParticipantIds', [])],
+                killer_id=event['killerId'],
+                position=self.format_position(event['position']),
+                timestamp=self.convert_timestamp_to_game_time(event['timestamp']),
+                victim_id=event['victimId']
+            )
+            return kill
+        else:
+            return None       
 
     def convert_timestamp_to_game_time(self,timestamp_ms):
         # Convert milliseconds to seconds
