@@ -70,13 +70,57 @@ class Get_Match_Timeline:
         return deaths
     
     def get_kills(self, events, participant_id):
-        kills = []
+        kills_event = []
         for event in events:
-            if event['type'] == 'CHAMPION_KILL':
-                if event['killerId'] == participant_id:
-                    kills.append("kill")
-        return kills
+            if event['type'] == 'CHAMPION_KILL' and 'killerId' in event:
+                if event['killerId'] == participant_id:   
+                    kill = self.extract_kill_data(event,participant_id)
+                    if kill is not None:
+                        kills_event.append(kill) 
+        return kills_event 
+
+    def extract_kill_data(self, event,participant_id):
+        required_keys = ['position', 'timestamp', 'victimId']
+        all_keys_except_assist = all(key in event for key in required_keys)
+        has_assist = 'assistingParticipantIds' in event
+
+        if all_keys_except_assist and has_assist:  # If both conditions are True
+            kill = Kill(
+                assisting_participant_ids=[aid - 1 for aid in event.get('assistingParticipantIds', [])],
+                killer_id=participant_id,
+                position=self.format_position(event['position']),
+                timestamp=self.convert_timestamp_to_game_time(event['timestamp']),
+                victim_id=event['victimId']
+            )
+            return kill
+        elif not has_assist:
+            kill = Kill(
+                killer_id=participant_id,
+                position=self.format_position(event['position']),
+                 timestamp=self.convert_timestamp_to_game_time(event['timestamp']),
+                victim_id=event['victimId']
+            )
+            return kill
+        else:
+            return None
+        
+
+    def convert_timestamp_to_game_time(self,timestamp_ms):
+        # Convert milliseconds to seconds
+        timestamp_seconds = timestamp_ms // 1000  # Integer division to get total seconds
+        
+        # Calculate minutes and seconds from total seconds
+        minutes = timestamp_seconds // 60  # Integer division to get minutes
+        seconds = timestamp_seconds % 60  # Modulus to get remaining seconds
+        
+        # Format the time as "minutes:seconds"
+        game_time = f"{minutes}:{seconds:02d}"  # Adding leading zero to seconds if needed
+        return game_time
+
+    def format_position(self, position):
+        return f"{position['x']}, {position['y']}"
     
+
     def get_assists(self, events, participant_id):
         assists = []
         for event in events:
@@ -86,7 +130,21 @@ class Get_Match_Timeline:
         return assists
     
 
-
+class Kill:
+    def __init__(self, killer_id, position, timestamp, victim_id, assisting_participant_ids=0):
+        self.killer_id = killer_id -1
+        self.position = position
+        self.timestamp = timestamp
+        self.victim_id = victim_id - 1
+        self.assisting_participant_ids = assisting_participant_ids
+    
+    def __str__(self):
+        return (f"Assisting Ids: {self.assisting_participant_ids}, "
+                f"killer_id: {self.killer_id}, "
+                f"position: {self.position}, "
+                f"timestamp: {self.timestamp}, "
+                f"victim_id: {self.victim_id}")
+    
 
 
 

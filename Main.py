@@ -19,34 +19,19 @@ for match in match_list_data:
     for parparticipant in participants:
         if parparticipant.isSummoner == True:
             summoner = parparticipant
-        print(parparticipant)
-    print(summoner)
     timeline = get_match_timeline_instance.get_match_timeline(match['match_id'])
     events = get_match_timeline_instance.get_events(timeline)
     deaths = get_match_timeline_instance.get_deaths(events, summoner.id)
     kills = get_match_timeline_instance.get_kills(events, summoner.id)
     assists = get_match_timeline_instance.get_assists(events, summoner.id)
-    print(deaths)
-    print(kills)
-    print(assists)
 
-
-    
-    
-    
-
-
-        #         event_type = event["type"]
-        #         participant_id_str = f'Participant: {event["participantId"]}' if "participantId" in event else ""
-        #         timestamp = event["timestamp"]
-        #         position_str = f'Position: {event["position"]}' if "position" in event else ""
-                
-        #         print(f'Event: {event_type} {participant_id_str} timestamp: {timestamp} {position_str}')
-                
-                # Uncomment below if you want to track kills by the participant
-                # if event['type'] == 'CHAMPION_KILL':
-                #     if event['killerId'] == participant_id:
-                #         events.append("kill")
+    for kill in kills:
+        victim_champion = participants[kill.victim_id].champion
+        assist_champ_ids = kill.assisting_participant_ids
+        if assist_champ_ids == 0:
+            print(f"@ {kill.timestamp} {summoner_name} ({participants[kill.killer_id].champion}) killed {victim_champion} @ {kill.position}, with no help!")
+        else:
+            print(f"@ {kill.timestamp} {summoner_name} ({participants[kill.killer_id].champion}) killed {victim_champion} @ {kill.position}, with the help of {kill.assisting_participant_ids}!")
 
             
 
