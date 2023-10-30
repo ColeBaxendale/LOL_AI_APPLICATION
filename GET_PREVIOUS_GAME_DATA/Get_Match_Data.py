@@ -1,4 +1,4 @@
-from Participant_Class import Participant
+from DATA_CLASSES.Participant_Class import Participant
 from UTILITIES.Riot_APIS import RiotApi
 
 

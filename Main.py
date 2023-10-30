@@ -1,7 +1,7 @@
 from GET_PREVIOUS_GAME_DATA.Get_Match_Data import Get_Match_Data
 from GET_PREVIOUS_GAME_DATA.Get_Match_List import Get_Matches_List
-from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Kills_Deaths_Assists, Get_Match_Timeline
-from UTILITIES.Riot_APIS import RiotApi
+from GET_PREVIOUS_GAME_DATA.Get_Kills_Deaths_Assists import Get_Kills_Deaths_Assists
+from GET_PREVIOUS_GAME_DATA.Get_Timeline import Get_Match_Timeline
 
 
 get_match_list_instance = Get_Matches_List()
@@ -24,9 +24,9 @@ for match in match_list_data:
     timeline = get_match_timeline_instance.get_match_timeline(match['match_id'])
     events = get_match_timeline_instance.get_events(timeline)
     
-    kills = get_kills_deaths_assists_instance.get_kills(events, summoner.id)[0]
-    deaths = get_kills_deaths_assists_instance.get_kills(events, summoner.id)[1]
-    assists = get_kills_deaths_assists_instance.get_kills(events, summoner.id)[2]
+    kills = get_kills_deaths_assists_instance.get_kills_deaths_assists(events, summoner.id)[0]
+    deaths = get_kills_deaths_assists_instance.get_kills_deaths_assists(events, summoner.id)[1]
+    assists = get_kills_deaths_assists_instance.get_kills_deaths_assists(events, summoner.id)[2]
 
     print(f"\n\n\n")
     print("KILLS")
