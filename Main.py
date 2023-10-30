@@ -1,6 +1,5 @@
 from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Kills_Deaths_Assists, Get_Match_Data, Get_Match_Timeline, Get_Matches_List
-from Riot_APIS import RiotApi
-from RIOT_API_SERVER_STATUS.Server_Online import ServerStatusChecker
+from UTILITIES.Riot_APIS import RiotApi
 
 
 get_matches_instance = Get_Matches_List()

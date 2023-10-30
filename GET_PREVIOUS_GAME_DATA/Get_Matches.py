@@ -1,5 +1,5 @@
 from Participant_Class import Participant
-from Riot_APIS import RiotApi
+from UTILITIES.Riot_APIS import RiotApi
 from UTILITIES.Utilities import Utilities
 
 class Get_Matches_List:
