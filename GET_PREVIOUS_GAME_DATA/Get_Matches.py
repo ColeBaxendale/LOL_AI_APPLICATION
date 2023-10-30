@@ -1,5 +1,6 @@
 from Participant_Class import Participant
 from Riot_APIS import RiotApi
+from UTILITIES.Utilities import Utilities
 
 class Get_Matches_List:
     def get_match_list(self, summoner_name):
@@ -99,16 +100,16 @@ class Get_Kills_Deaths_Assists:
             kill = Kill(
                 assisting_participant_ids=[aid - 1 for aid in event.get('assistingParticipantIds', [])],
                 killer_id=participant_id,
-                position=self.format_position(event['position']),
-                timestamp=self.convert_timestamp_to_game_time(event['timestamp']),
+                position=Utilities.format_position(event['position']),
+                timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
                 victim_id=event['victimId']
             )
             return kill
         elif not has_assist:
             kill = Kill(
                 killer_id=participant_id,
-                position=self.format_position(event['position']),
-                 timestamp=self.convert_timestamp_to_game_time(event['timestamp']),
+                position=Utilities.format_position(event['position']),
+                 timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
                 victim_id=event['victimId']
             )
             return kill
@@ -125,16 +126,16 @@ class Get_Kills_Deaths_Assists:
             kill = Kill(
                 assisting_participant_ids=[aid - 1 for aid in event.get('assistingParticipantIds', [])],
                 killer_id=event['killerId'],
-                position=self.format_position(event['position']),
-                timestamp=self.convert_timestamp_to_game_time(event['timestamp']),
+                position=Utilities.format_position(event['position']),
+                timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
                 victim_id=participant_id
             )
             return kill
         elif not has_assist:
             kill = Kill(
                 killer_id=event['killerId'],
-                position=self.format_position(event['position']),
-                 timestamp=self.convert_timestamp_to_game_time(event['timestamp']),
+                position=Utilities.format_position(event['position']),
+                 timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
                 victim_id=participant_id
             )
             return kill
@@ -151,39 +152,14 @@ class Get_Kills_Deaths_Assists:
             kill = Kill(
                 assisting_participant_ids=[aid - 1 for aid in event.get('assistingParticipantIds', [])],
                 killer_id=event['killerId'],
-                position=self.format_position(event['position']),
-                timestamp=self.convert_timestamp_to_game_time(event['timestamp']),
+                position=Utilities.format_position(event['position']),
+                timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
                 victim_id=event['victimId']
             )
             return kill
         else:
             return None       
-
-    def convert_timestamp_to_game_time(self,timestamp_ms):
-        # Convert milliseconds to seconds
-        timestamp_seconds = timestamp_ms // 1000  # Integer division to get total seconds
         
-        # Calculate minutes and seconds from total seconds
-        minutes = timestamp_seconds // 60  # Integer division to get minutes
-        seconds = timestamp_seconds % 60  # Modulus to get remaining seconds
-        
-        # Format the time as "minutes:seconds"
-        game_time = f"{minutes}:{seconds:02d}"  # Adding leading zero to seconds if needed
-        return game_time
-
-    def format_position(self, position):
-        return f"{position['x']}, {position['y']}"
-    
-
-    def get_assists(self, events, participant_id):
-        assists = []
-        for event in events:
-            if event['type'] == 'CHAMPION_KILL' and 'assistingParticipantIds' in event:
-                if participant_id in event['assistingParticipantIds']:
-                    assists.append("assist")
-        return assists
-    
-
 class Kill:
     def __init__(self, killer_id, position, timestamp, victim_id, assisting_participant_ids=0):
         self.killer_id = killer_id -1
