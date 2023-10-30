@@ -1,4 +1,4 @@
-from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Match_Data
+from GET_PREVIOUS_GAME_DATA.Get_Match_Data import Get_Match_Data
 from UTILITIES.Riot_APIS import RiotApi
 
 

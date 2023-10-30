@@ -1,5 +1,6 @@
+from GET_PREVIOUS_GAME_DATA.Get_Match_Data import Get_Match_Data
 from GET_PREVIOUS_GAME_DATA.Get_Match_List import Get_Matches_List
-from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Kills_Deaths_Assists, Get_Match_Data, Get_Match_Timeline
+from GET_PREVIOUS_GAME_DATA.Get_Matches import Get_Kills_Deaths_Assists, Get_Match_Timeline
 from UTILITIES.Riot_APIS import RiotApi
 
 
