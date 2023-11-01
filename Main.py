@@ -8,41 +8,6 @@ from GET_PREVIOUS_GAME_DATA.Get_Timeline import Get_Match_Timeline
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 get_match_list_instance = Get_Matches_List()
 get_match_data_instance = Get_Match_Data()
 get_match_timeline_instance = Get_Match_Timeline()
@@ -115,4 +80,4 @@ for match in match_list_data:
             print(f"@ {assist.timestamp} {summoner_name} ({participants[summoner.id-1].champion}) helped {killed_by_champion} kill {victim_champion} with no more help! @ {assist.position}")
         else:
             print(f"@ {assist.timestamp} {summoner_name} ({participants[summoner.id-1].champion}) helped {killed_by_champion} kill {victim_champion} with more help from {assisting_champion}! @ {assist.position}")
-            
+

@@ -23,4 +23,3 @@ class Get_Match_Data:
         for participant in participants_details:
             participants.append(Participant(participant, summoner_name))
         return participants
-    
