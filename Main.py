@@ -3,16 +3,10 @@ from GET_PREVIOUS_GAME_DATA.Get_Match_List import Get_Matches_List
 from GET_PREVIOUS_GAME_DATA.Get_Kills_Deaths_Assists import Get_Kills_Deaths_Assists
 from GET_PREVIOUS_GAME_DATA.Get_Timeline import Get_Match_Timeline
 
-
-
-
-
-
 get_match_list_instance = Get_Matches_List()
 get_match_data_instance = Get_Match_Data()
 get_match_timeline_instance = Get_Match_Timeline()
 get_kills_deaths_assists_instance = Get_Kills_Deaths_Assists()
-
 
 summoner_name = 'BasicallyClutch'
 summoner = None
@@ -86,3 +80,13 @@ for match in match_list_data:
     gold_per_minute = get_match_data_instance.get_gold_per_minute(match["match_data"], summoner.id)
     print(f"{cs_per_minute} farm per minute")
     print(f"{gold_per_minute} gold per minute")
+
+
+# add champExperience data
+# add damageDealtToBuildings/damageDealtToTurrets  damageDealtToObjectives data
+# add doubleKills, tripleKills, quadraKills, pentaKills  data
+# add TeamDto objectives baron  dragon  riftHerald  inhibitor tower data
+# add summonerLevel data
+# add totalDamageDealtToChampions data
+# add wardsPlaced data
+# add win data
