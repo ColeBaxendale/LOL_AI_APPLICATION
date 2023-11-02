@@ -44,11 +44,8 @@ class Get_Match_Data:
             if participant['participantId'] == participant_id:
                 participant_data = participant
                 break
-
         total_gold = participant_data['goldEarned']
-        print(total_gold)
         gold_per_minute = total_gold / game_duration if game_duration > 0 else 0
-        print(game_duration)
         return round(gold_per_minute, 2)  # Rounded to two decimal places
 
        
