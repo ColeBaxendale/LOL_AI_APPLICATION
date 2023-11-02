@@ -11,3 +11,10 @@ class Utilities:
     @staticmethod
     def format_position(position):
         return f"{position['x']}, {position['y']}"
+    
+    @staticmethod
+    def convert_time_to_game_time(game_duration):
+        whole_minutes = int(game_duration // 60) 
+        remaining_seconds = int(game_duration % 60) 
+        game_duration = whole_minutes + remaining_seconds / 100.0
+        return round(game_duration, 2)
