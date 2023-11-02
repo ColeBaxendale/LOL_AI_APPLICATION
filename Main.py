@@ -2,11 +2,13 @@ from GET_PREVIOUS_GAME_DATA.Get_Match_Data import Get_Match_Data
 from GET_PREVIOUS_GAME_DATA.Get_Match_List import Get_Matches_List
 from GET_PREVIOUS_GAME_DATA.Get_Kills_Deaths_Assists import Get_Kills_Deaths_Assists
 from GET_PREVIOUS_GAME_DATA.Get_Timeline import Get_Match_Timeline
+from Methods_To_Sort import Methods_To_Sort
 
 get_match_list_instance = Get_Matches_List()
 get_match_data_instance = Get_Match_Data()
 get_match_timeline_instance = Get_Match_Timeline()
 get_kills_deaths_assists_instance = Get_Kills_Deaths_Assists()
+methods_to_sort_instance = Methods_To_Sort()
 
 summoner_name = 'BasicallyClutch'
 summoner = None
@@ -76,8 +78,8 @@ for match in match_list_data:
 
     
 
-    cs_per_minute = get_match_data_instance.cs_per_min(match["match_data"], summoner.id)
-    gold_per_minute = get_match_data_instance.get_gold_per_minute(match["match_data"], summoner.id)
+    cs_per_minute = methods_to_sort_instance.cs_per_min(match["match_data"], summoner.id)
+    gold_per_minute = methods_to_sort_instance.get_gold_per_minute(match["match_data"], summoner.id)
     print(f"{cs_per_minute} farm per minute")
     print(f"{gold_per_minute} gold per minute")
 
