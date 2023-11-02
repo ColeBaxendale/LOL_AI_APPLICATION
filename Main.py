@@ -82,11 +82,9 @@ for match in match_list_data:
     print(f"{gold_per_minute} gold per minute")
 
 
-# add champExperience data
-# add damageDealtToBuildings/damageDealtToTurrets  damageDealtToObjectives data
-# add doubleKills, tripleKills, quadraKills, pentaKills  data
-# add TeamDto objectives baron  dragon  riftHerald  inhibitor tower data
 # add summonerLevel data
+# add damageDealtToBuildings/damageDealtToTurrets  damageDealtToObjectives data
+# add TeamDto objectives baron  dragon  riftHerald  inhibitor tower data
 # add totalDamageDealtToChampions data
 # add wardsPlaced data
 # add win data
