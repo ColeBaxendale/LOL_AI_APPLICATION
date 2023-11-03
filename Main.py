@@ -88,6 +88,9 @@ for match in match_list_data:
     total_building_dmg = methods_to_sort_instance.get_damage_to_buildings(match["match_data"], summoner.id)
     print(f"Summoner did {total_building_dmg} damage to buildings")
 
+    damage_to_champs = methods_to_sort_instance.get_damage_to_champions(match["match_data"], summoner.id)
+    print(f"Summoner did {damage_to_champs} damage to champions")
+
 
 # add TeamDto objectives baron  dragon  riftHerald  inhibitor tower data
 # add totalDamageDealtToChampions data
