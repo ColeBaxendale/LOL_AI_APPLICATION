@@ -82,6 +82,8 @@ for match in match_list_data:
     gold_per_minute = methods_to_sort_instance.get_gold_per_minute(match["match_data"], summoner.id)
     print(f"{cs_per_minute} farm per minute")
     print(f"{gold_per_minute} gold per minute")
+    summoner_level = methods_to_sort_instance.get_summoner_level(match["match_data"], summoner.id)
+    print(f"Summoner finished the game at level {summoner_level}")
 
 
 # add summonerLevel data

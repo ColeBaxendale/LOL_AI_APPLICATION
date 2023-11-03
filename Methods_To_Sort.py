@@ -25,6 +25,15 @@ class Methods_To_Sort:
         total_gold = participant_data['goldEarned']
         gold_per_minute = total_gold / game_duration if game_duration > 0 else 0
         return round(gold_per_minute, 2) 
-
+    
+    def get_summoner_level(self, match_data, participant_id):
+        participant_data = None
+        for participant in match_data['info']['participants']:
+            if participant['participantId'] == participant_id:
+                participant_data = participant
+                break
+        summoner_level = participant_data['champLevel']
+        return(summoner_level)
+    
        
         
