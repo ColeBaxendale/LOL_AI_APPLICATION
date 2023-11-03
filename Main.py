@@ -85,9 +85,10 @@ for match in match_list_data:
     summoner_level = methods_to_sort_instance.get_summoner_level(match["match_data"], summoner.id)
     print(f"Summoner finished the game at level {summoner_level}")
 
+    total_building_dmg = methods_to_sort_instance.get_damage_to_buildings(match["match_data"], summoner.id)
+    print(f"Summoner did {total_building_dmg} damage to buildings")
 
-# add summonerLevel data
-# add damageDealtToBuildings/damageDealtToTurrets  damageDealtToObjectives data
+
 # add TeamDto objectives baron  dragon  riftHerald  inhibitor tower data
 # add totalDamageDealtToChampions data
 # add wardsPlaced data
