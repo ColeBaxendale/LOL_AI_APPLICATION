@@ -1,14 +1,18 @@
 from GET_PREVIOUS_GAME_DATA.Get_Match_Data import Get_Match_Data
 from GET_PREVIOUS_GAME_DATA.Get_Match_List import Get_Matches_List
 from GET_PREVIOUS_GAME_DATA.Get_Kills_Deaths_Assists import Get_Kills_Deaths_Assists
+from GET_PREVIOUS_GAME_DATA.Get_Per_Min_Data import Get_Per_Min_Data
+from GET_PREVIOUS_GAME_DATA.Get_Summoner_Dmg_Level import Get_Summoner_Dmg_Level
+from GET_PREVIOUS_GAME_DATA.Get_Team_Obj_Data import Get_Team_Obj_Data
 from GET_PREVIOUS_GAME_DATA.Get_Timeline import Get_Match_Timeline
-from Methods_To_Sort import Methods_To_Sort
 
 get_match_list_instance = Get_Matches_List()
 get_match_data_instance = Get_Match_Data()
 get_match_timeline_instance = Get_Match_Timeline()
 get_kills_deaths_assists_instance = Get_Kills_Deaths_Assists()
-methods_to_sort_instance = Methods_To_Sort()
+get_per_min_data_instance = Get_Per_Min_Data()
+get_summoner_dmg_level_instance = Get_Summoner_Dmg_Level()
+get_team_obj_data_instance = Get_Team_Obj_Data()
 
 summoner_name = 'BasicallyClutch'
 summoner = None
@@ -78,19 +82,22 @@ for match in match_list_data:
 
     
 
-    cs_per_minute = methods_to_sort_instance.cs_per_min(match["match_data"], summoner.id)
-    gold_per_minute = methods_to_sort_instance.get_gold_per_minute(match["match_data"], summoner.id)
+    cs_per_minute = get_per_min_data_instance.cs_per_min(match["match_data"], summoner.id)
+    gold_per_minute = get_per_min_data_instance.get_gold_per_minute(match["match_data"], summoner.id)
     print(f"{cs_per_minute} farm per minute")
     print(f"{gold_per_minute} gold per minute")
-    summoner_level = methods_to_sort_instance.get_summoner_level(match["match_data"], summoner.id)
+    summoner_level = get_summoner_dmg_level_instance.get_summoner_level(match["match_data"], summoner.id)
     print(f"Summoner finished the game at level {summoner_level}")
 
-    total_building_dmg = methods_to_sort_instance.get_damage_to_buildings(match["match_data"], summoner.id)
+    total_building_dmg = get_summoner_dmg_level_instance.get_damage_to_buildings(match["match_data"], summoner.id)
     print(f"Summoner did {total_building_dmg} damage to buildings")
 
-    damage_to_champs = methods_to_sort_instance.get_damage_to_champions(match["match_data"], summoner.id)
+    damage_to_champs = get_summoner_dmg_level_instance.get_damage_to_champions(match["match_data"], summoner.id)
     print(f"Summoner did {damage_to_champs} damage to champions")
 
-    teams = methods_to_sort_instance.get_team_objectives(match["match_data"], summoner.team)
+    damage_per_min = get_per_min_data_instance.get_damage_per_min(match["match_data"], summoner.id)
+    print(f"Summoner did {damage_per_min} damage to champions per minute")
+
+    teams = get_team_obj_data_instance.get_team_objectives(match["match_data"], summoner.team)
     print(teams)
 
