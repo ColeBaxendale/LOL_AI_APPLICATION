@@ -1,8 +1,0 @@
-timestamp,killed_by_champion,victim_champion,assisting_champions,position
-10:32,Taliyah,Yasuo,[],"12858, 2104"
-11:47,Seraphine,Rell,[],"10076, 951"
-20:44,Taliyah,Briar,[],"11802, 7006"
-22:15,TahmKench,Briar,['Taliyah'],"6494, 4840"
-23:10,Shaco,Varus,"['Taliyah', 'Seraphine']","5160, 5263"
-26:28,Taliyah,Yasuo,['Shaco'],"3173, 1558"
-27:50,Shaco,Briar,"['TahmKench', 'Seraphine']","2021, 1139"
