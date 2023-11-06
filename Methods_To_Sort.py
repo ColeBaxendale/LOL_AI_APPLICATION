@@ -55,3 +55,36 @@ class Methods_To_Sort:
         damage_to_champs = participant_data['totalDamageDealtToChampions']
         return(damage_to_champs)   
         
+    def get_team_objectives(self,match_data, team_id):
+        team_id_num = 0
+        if team_id == 'red':
+            team_id_num = 200
+        else:
+            team_id_num = 100
+
+
+        # Check if 'info' key is present in match_data
+        if 'info' not in match_data:
+            return "No 'info' key found in match_data"
+    
+        # Check if 'teams' key is present within 'info'
+        if 'teams' not in match_data['info']:
+            return "No 'teams' key found in match_data['info']"
+    
+        # Iterate through the teams in the match_data
+        for team in match_data['info']['teams']:
+            if team['teamId'] == team_id_num:
+                # Extract the objectives
+                objectives = team['objectives']
+                return {
+                    'win': team['win'],
+                    'baron': objectives['baron']['kills'],
+                    'dragon': objectives['dragon']['kills'],
+                    'riftHerald': objectives['riftHerald']['kills'],
+                    'inhibitor': objectives['inhibitor']['kills'],
+                    'tower': objectives['tower']['kills']
+                }
+    
+        # If the teamId was not found in the teams list
+        return f"No data found for team ID {team_id}."
+

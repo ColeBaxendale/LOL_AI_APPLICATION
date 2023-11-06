@@ -91,8 +91,6 @@ for match in match_list_data:
     damage_to_champs = methods_to_sort_instance.get_damage_to_champions(match["match_data"], summoner.id)
     print(f"Summoner did {damage_to_champs} damage to champions")
 
+    teams = methods_to_sort_instance.get_team_objectives(match["match_data"], summoner.team)
+    print(teams)
 
-# add TeamDto objectives baron  dragon  riftHerald  inhibitor tower data
-# add totalDamageDealtToChampions data
-# add wardsPlaced data
-# add win data
