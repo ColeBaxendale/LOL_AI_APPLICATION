@@ -1,0 +1,12 @@
+timestamp,killed_by_champion,assisting_champions,position
+1:31,Briar,"['Yasuo', 'Rell']","8608, 4574"
+5:07,Yasuo,"['Briar', 'Rell']","11810, 1364"
+7:31,Yasuo,"['Briar', 'Rell']","13365, 2043"
+9:16,Yasuo,['Rell'],"10369, 1408"
+10:21,Yasuo,[],"11013, 1317"
+11:46,Yasuo,['Rell'],"10163, 923"
+14:08,Yasuo,['Rell'],"8845, 4013"
+17:42,Briar,['Rell'],"7590, 3508"
+23:16,Yasuo,[],"6068, 5626"
+24:29,KSante,[],"4842, 6606"
+26:27,Yasuo,[],"3425, 1617"
