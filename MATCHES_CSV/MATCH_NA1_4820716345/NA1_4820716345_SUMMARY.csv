@@ -1,0 +1,2 @@
+MatchID,SummonerID,SummonerTeam,Champion,Level,TotalBuildingDamage,DamageToChampions,DamagePerMinute,CSPerMinute,GoldPerMinute,KillsFilename,DeathsFilename,AssistsFilename,BaronKills,DragonKills,RiftHeraldKills,InhibitorKills,TowerKills,Win
+NA1_4820716345,4,Blue,Caitlyn,13,6828,23604,804.22,6.54,439.49,MATCHES_CSV/MATCH_NA1_4820716345\NA1_4820716345_kills.csv,MATCHES_CSV/MATCH_NA1_4820716345\NA1_4820716345_deaths.csv,MATCHES_CSV/MATCH_NA1_4820716345\NA1_4820716345_assists.csv,0,3,2,0,5,False
