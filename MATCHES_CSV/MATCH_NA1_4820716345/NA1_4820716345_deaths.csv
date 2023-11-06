@@ -1,0 +1,6 @@
+timestamp,killed_by_champion,assisting_champions,position
+17:13,MasterYi,[],"13175, 5936"
+19:13,MasterYi,[],"13691, 2971"
+23:08,MasterYi,['Akshan'],"7192, 3117"
+24:58,Malphite,"['Akshan', 'Zyra']","4362, 10120"
+28:54,Akshan,"['Malphite', 'MasterYi']","6536, 1047"
