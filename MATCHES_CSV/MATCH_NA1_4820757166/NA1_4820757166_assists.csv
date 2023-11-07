@@ -1,8 +1,0 @@
-timestamp,killed_by_champion,victim_champion,assisting_champions,position
-5:00,Braum,Rammus,['MasterYi'],"10378, 1672"
-5:12,MasterYi,Kaisa,['Braum'],"10746, 2828"
-5:15,MasterYi,Senna,['Braum'],"10682, 3247"
-7:26,Braum,Kaisa,[],"13019, 5091"
-12:27,MasterYi,Senna,['Braum'],"11759, 2520"
-16:49,MasterYi,Senna,['Braum'],"8358, 5763"
-16:59,MasterYi,Rammus,['Braum'],"8557, 4949"

@@ -1,0 +1,8 @@
+match_id,timestamp,killed_by_champion,victim_champion,assisting_champions,position
+NA1_4820757166,5:00,Braum,Rammus,['MasterYi'],"10378, 1672"
+NA1_4820757166,5:12,MasterYi,Kaisa,['Braum'],"10746, 2828"
+NA1_4820757166,5:15,MasterYi,Senna,['Braum'],"10682, 3247"
+NA1_4820757166,7:26,Braum,Kaisa,[],"13019, 5091"
+NA1_4820757166,12:27,MasterYi,Senna,['Braum'],"11759, 2520"
+NA1_4820757166,16:49,MasterYi,Senna,['Braum'],"8358, 5763"
+NA1_4820757166,16:59,MasterYi,Rammus,['Braum'],"8557, 4949"

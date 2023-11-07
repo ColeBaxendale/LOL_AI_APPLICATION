@@ -1,0 +1,5 @@
+match_id,timestamp,killed_by_champion,victim_champion,assisting_champions,position
+NA1_4820716345,7:44,Leona,MasterYi,['JarvanIV'],"10253, 2302"
+NA1_4820716345,12:49,TahmKench,Ashe,['Leona'],"14112, 4588"
+NA1_4820716345,19:20,Orianna,Zyra,['Leona'],"13661, 4085"
+NA1_4820716345,21:18,JarvanIV,Zyra,"['TahmKench', 'Leona']","9254, 8537"

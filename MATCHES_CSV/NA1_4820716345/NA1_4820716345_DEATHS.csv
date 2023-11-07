@@ -1,0 +1,6 @@
+match_id,timestamp,killed_by_champion,assisting_champions,position
+NA1_4820716345,17:13,MasterYi,[],"13175, 5936"
+NA1_4820716345,19:13,MasterYi,[],"13691, 2971"
+NA1_4820716345,23:08,MasterYi,['Akshan'],"7192, 3117"
+NA1_4820716345,24:58,Malphite,"['Akshan', 'Zyra']","4362, 10120"
+NA1_4820716345,28:54,Akshan,"['Malphite', 'MasterYi']","6536, 1047"

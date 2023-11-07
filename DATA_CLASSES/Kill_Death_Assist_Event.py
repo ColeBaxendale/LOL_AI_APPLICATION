@@ -1,5 +1,6 @@
 class Kill:
-    def __init__(self, killer_id, position, timestamp, victim_id, assisting_participant_ids=0):
+    def __init__(self, matchid,killer_id, position, timestamp, victim_id, assisting_participant_ids=0):
+        self.matchid = matchid
         self.killer_id = killer_id -1
         self.position = position
         self.timestamp = timestamp

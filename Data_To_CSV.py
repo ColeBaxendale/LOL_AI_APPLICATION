@@ -46,7 +46,7 @@ class Data_To_CSV:
             cs_per_minute = get_per_min_data_instance.cs_per_min(match["match_data"], summoner_id)
             gold_per_minute = get_per_min_data_instance.get_gold_per_minute(match["match_data"], summoner_id)
             teams = get_team_obj_data_instance.get_team_objectives(match["match_data"], summoner.team)
-            kills, deaths, assists = get_kills_deaths_assists_instance.get_kills_deaths_assists(events, summoner.id)
+            kills, deaths, assists = get_kills_deaths_assists_instance.get_kills_deaths_assists(events, summoner.id,match['match_id'])
             
             # Format kills, deaths, and assists
             kill_data = []
@@ -55,6 +55,7 @@ class Data_To_CSV:
                 assist_champ_ids = kill.assisting_participant_ids
                 assisting_champions = [participants[aid].champion for aid in assist_champ_ids] if assist_champ_ids else []
                 kill_data.append({
+                    'match_id': kill.matchid,
                     'timestamp': kill.timestamp,
                     'victim_champion': victim_champion,
                     'assisting_champions': assisting_champions,
@@ -67,6 +68,7 @@ class Data_To_CSV:
                 assist_champ_ids = death.assisting_participant_ids
                 assisting_champions = [participants[aid].champion for aid in assist_champ_ids] if assist_champ_ids else []
                 death_data.append({
+                    'match_id': kill.matchid,
                     'timestamp': death.timestamp,
                     'killed_by_champion': killed_by_champion,
                     'assisting_champions': assisting_champions,
@@ -80,6 +82,7 @@ class Data_To_CSV:
                 assist_champ_ids = assist.assisting_participant_ids
                 assisting_champions = [participants[aid].champion for aid in assist_champ_ids if aid != summoner.id - 1]
                 assist_data.append({
+                    'match_id': kill.matchid,
                     'timestamp': assist.timestamp,
                     'killed_by_champion': killed_by_champion,
                     'victim_champion': victim_champion,
@@ -87,13 +90,14 @@ class Data_To_CSV:
                     'position': assist.position,
                 })
 
-            match_directory = f'MATCHES_CSV/MATCH_{match_id}'
+
+            match_directory = f'MATCHES_CSV/{match_id}'
             if not os.path.exists(match_directory):
                 os.makedirs(match_directory)
 
-            kills_filename = os.path.join(match_directory, f'{match_id}_kills.csv')
-            deaths_filename = os.path.join(match_directory, f'{match_id}_deaths.csv')
-            assists_filename = os.path.join(match_directory, f'{match_id}_assists.csv')
+            kills_filename = os.path.join(match_directory, f'{match_id}_KILLS.csv')
+            deaths_filename = os.path.join(match_directory, f'{match_id}_DEATHS.csv')
+            assists_filename = os.path.join(match_directory, f'{match_id}_ASSISTS.csv')
             pd.DataFrame(kill_data).to_csv(kills_filename, index=False)
             pd.DataFrame(death_data).to_csv(deaths_filename, index=False)
             pd.DataFrame(assist_data).to_csv(assists_filename, index=False)
@@ -130,7 +134,7 @@ class Data_To_CSV:
                 
             }
 
-            all_matches_ids.append(match_id)
+            all_matches_ids.append(f'{match_id}')
             print(f'{match_id} appended')
             match_summary_csv_path = f'{match_directory}/{match_id}_SUMMARY.csv'
             pd.DataFrame([match_data_dict]).to_csv(match_summary_csv_path, index=False)
@@ -139,7 +143,7 @@ class Data_To_CSV:
         summary_csv_path = 'MATCHES_CSV/MATCHES_IDS.csv'
         if not os.path.exists('MATCHES_CSV'):
             os.makedirs('MATCHES_CSV')
-        matches_ids_df = pd.DataFrame({'MATCH_ID': all_matches_ids})
+        matches_ids_df = pd.DataFrame({'CSV_MATCH_ID_PATH': all_matches_ids})
         matches_ids_df.to_csv(summary_csv_path, index=False)
         print(f'Summary CSV created at {summary_csv_path}')
         

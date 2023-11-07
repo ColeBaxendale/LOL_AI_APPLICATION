@@ -1,0 +1,2 @@
+MatchID,SummonerID,SummonerTeam,Champion,Level,TotalBuildingDamage,DamageToChampions,DamagePerMinute,CSPerMinute,GoldPerMinute,KillsFilename,DeathsFilename,AssistsFilename,BaronKills,DragonKills,RiftHeraldKills,InhibitorKills,TowerKills,Win
+NA1_4820757166,9,Red,Aphelios,15,16538,21010,690.89,6.54,422.26,MATCHES_CSV/NA1_4820757166\NA1_4820757166_KILLS.csv,MATCHES_CSV/NA1_4820757166\NA1_4820757166_DEATHS.csv,MATCHES_CSV/NA1_4820757166\NA1_4820757166_ASSISTS.csv,1,4,0,2,8,True

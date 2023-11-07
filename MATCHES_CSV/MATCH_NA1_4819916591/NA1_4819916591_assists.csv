@@ -1,7 +1,0 @@
-timestamp,killed_by_champion,victim_champion,assisting_champions,position
-23:39,Taliyah,TahmKench,[],"4800, 4804"
-25:58,Volibear,TahmKench,"['Warwick', 'Taliyah', 'Thresh']","11874, 6936"
-26:03,Thresh,Lillia,"['Warwick', 'Taliyah']","12314, 7762"
-31:39,Taliyah,FiddleSticks,"['Volibear', 'Warwick', 'Thresh']","10886, 5067"
-34:21,Taliyah,TahmKench,"['Warwick', 'Thresh']","7158, 2565"
-35:29,Warwick,Lillia,[],"9535, 6269"

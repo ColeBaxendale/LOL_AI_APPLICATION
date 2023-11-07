@@ -1,0 +1,12 @@
+match_id,timestamp,killed_by_champion,assisting_champions,position
+NA1_4819916591,2:31,FiddleSticks,['Jhin'],"11340, 1032"
+NA1_4819916591,13:32,TahmKench,"['Lillia', 'Jhin', 'FiddleSticks']","11831, 1828"
+NA1_4819916591,15:09,Jhin,['FiddleSticks'],"12462, 2742"
+NA1_4819916591,16:49,FiddleSticks,['Jhin'],"12966, 1462"
+NA1_4819916591,19:22,Jhin,['Lillia'],"13368, 2608"
+NA1_4819916591,20:41,Jhin,['FiddleSticks'],"10779, 1476"
+NA1_4819916591,22:31,TahmKench,"['Lillia', 'Jhin', 'FiddleSticks']","10487, 5017"
+NA1_4819916591,24:46,Garen,[],"4931, 4670"
+NA1_4819916591,29:21,Garen,"['TahmKench', 'FiddleSticks']","4474, 9567"
+NA1_4819916591,34:08,Garen,['TahmKench'],"10260, 2462"
+NA1_4819916591,37:26,Jhin,"['Garen', 'TahmKench']","9514, 5864"

@@ -1,0 +1,9 @@
+match_id,timestamp,victim_champion,assisting_champions,position
+NA1_4820716345,12:25,Zyra,[],"13598, 4120"
+NA1_4820716345,13:51,Ashe,['JarvanIV'],"11769, 1398"
+NA1_4820716345,15:05,Ashe,['Leona'],"13506, 2848"
+NA1_4820716345,15:54,Zyra,[],"13750, 5252"
+NA1_4820716345,17:07,Ashe,['Leona'],"13989, 6728"
+NA1_4820716345,18:29,Malphite,['Leona'],"11202, 5264"
+NA1_4820716345,20:34,Ashe,"['TahmKench', 'JarvanIV']","7317, 11636"
+NA1_4820716345,28:55,Akshan,['Leona'],"7296, 1091"
