@@ -1,8 +1,0 @@
-match_id,timestamp,victim_champion,assisting_champions,position
-NA1_4820792540,12:40,Yasuo,['Seraphine'],"8493, 890"
-NA1_4820792540,15:57,Briar,"['Taliyah', 'Seraphine']","13566, 3594"
-NA1_4820792540,20:04,Rell,"['Taliyah', 'Seraphine']","6540, 3144"
-NA1_4820792540,23:03,Rell,"['Taliyah', 'Seraphine']","4549, 4210"
-NA1_4820792540,24:15,Yasuo,"['TahmKench', 'Shaco']","4666, 9689"
-NA1_4820792540,25:46,Briar,"['Shaco', 'Seraphine']","4691, 4774"
-NA1_4820792540,27:45,Rell,['TahmKench'],"1796, 1145"

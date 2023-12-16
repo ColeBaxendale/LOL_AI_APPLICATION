@@ -1,7 +1,0 @@
-match_id,timestamp,killed_by_champion,victim_champion,assisting_champions,position
-NA1_4818882796,3:02,Bard,Taric,[],"14084, 4293"
-NA1_4818882796,6:35,Bard,Taric,[],"13128, 4172"
-NA1_4818882796,12:54,Bard,Aphelios,[],"12253, 2405"
-NA1_4818882796,16:20,Taliyah,Naafiri,"['Kayn', 'Bard']","6817, 6209"
-NA1_4818882796,22:33,Kayn,Evelynn,['Bard'],"11632, 5896"
-NA1_4818882796,24:32,Kayn,Aphelios,"['Taliyah', 'Bard']","7394, 4636"

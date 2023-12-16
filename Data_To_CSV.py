@@ -29,6 +29,7 @@ class Data_To_CSV:
             summoner = None
             participants = get_match_data_instance.get_summoner_participants(match["match_data"],summoner_name)
             for parparticipant in participants:
+                print(parparticipant)
                 if parparticipant.isSummoner == True:
                     summoner = parparticipant
 
@@ -51,42 +52,23 @@ class Data_To_CSV:
             # Format kills, deaths, and assists
             kill_data = []
             for kill in kills:
-                victim_champion = participants[kill.victim_id].champion
-                assist_champ_ids = kill.assisting_participant_ids
-                assisting_champions = [participants[aid].champion for aid in assist_champ_ids] if assist_champ_ids else []
                 kill_data.append({
-                    'match_id': kill.matchid,
                     'timestamp': kill.timestamp,
-                    'victim_champion': victim_champion,
-                    'assisting_champions': assisting_champions,
                     'position': kill.position
                     })
                 
             death_data = []
             for death in deaths:
-                killed_by_champion = participants[death.killer_id].champion
-                assist_champ_ids = death.assisting_participant_ids
-                assisting_champions = [participants[aid].champion for aid in assist_champ_ids] if assist_champ_ids else []
                 death_data.append({
-                    'match_id': kill.matchid,
                     'timestamp': death.timestamp,
-                    'killed_by_champion': killed_by_champion,
-                    'assisting_champions': assisting_champions,
                     'position': death.position
                     })
                 
             assist_data = []
             for assist in assists:
-                killed_by_champion = participants[assist.killer_id].champion
-                victim_champion = participants[assist.victim_id].champion
-                assist_champ_ids = assist.assisting_participant_ids
-                assisting_champions = [participants[aid].champion for aid in assist_champ_ids if aid != summoner.id - 1]
                 assist_data.append({
-                    'match_id': kill.matchid,
+
                     'timestamp': assist.timestamp,
-                    'killed_by_champion': killed_by_champion,
-                    'victim_champion': victim_champion,
-                    'assisting_champions': assisting_champions,
                     'position': assist.position,
                 })
 
@@ -119,9 +101,7 @@ class Data_To_CSV:
                 'CSPerMinute': cs_per_minute,
                 'GoldPerMinute': gold_per_minute,
 
-                'KillsFilename': kills_filename,
-                'DeathsFilename': deaths_filename,
-                'AssistsFilename': assists_filename,
+
 
 
                 'BaronKills': teams.get('baron', 0),

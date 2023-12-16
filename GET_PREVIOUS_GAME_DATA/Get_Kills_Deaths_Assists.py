@@ -30,20 +30,15 @@ class Get_Kills_Deaths_Assists:
             
             kill = Kill(
                 matchid = match_id,
-                assisting_participant_ids=[aid - 1 for aid in event.get('assistingParticipantIds', [])],
-                killer_id=participant_id,
                 position=Utilities.format_position(event['position']),
                 timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
-                victim_id=event['victimId']
             )
             return kill
         elif not has_assist:
             kill = Kill(
                 matchid = match_id,
-                killer_id=participant_id,
                 position=Utilities.format_position(event['position']),
-                 timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
-                victim_id=event['victimId']
+                timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
             )
             return kill
         else:
@@ -58,20 +53,15 @@ class Get_Kills_Deaths_Assists:
             
             kill = Kill(
                 matchid = match_id,
-                assisting_participant_ids=[aid - 1 for aid in event.get('assistingParticipantIds', [])],
-                killer_id=event['killerId'],
                 position=Utilities.format_position(event['position']),
                 timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
-                victim_id=participant_id
             )
             return kill
         elif not has_assist:
             kill = Kill(
                 matchid = match_id,
-                killer_id=event['killerId'],
                 position=Utilities.format_position(event['position']),
-                 timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
-                victim_id=participant_id
+                timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
             )
             return kill
         else:
@@ -86,11 +76,8 @@ class Get_Kills_Deaths_Assists:
             
             kill = Kill(
                 matchid = match_id,
-                assisting_participant_ids=[aid - 1 for aid in event.get('assistingParticipantIds', [])],
-                killer_id=event['killerId'],
                 position=Utilities.format_position(event['position']),
                 timestamp=Utilities.convert_timestamp_to_game_time(event['timestamp']),
-                victim_id=event['victimId']
             )
             return kill
         else:
