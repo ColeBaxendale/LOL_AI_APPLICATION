@@ -1,13 +1,4 @@
-class Get_Summoner_Dmg_Level:
-    def get_summoner_level(self, match_data, participant_id):
-        participant_data = None
-        for participant in match_data['info']['participants']:
-            if participant['participantId'] == participant_id:
-                participant_data = participant
-                break
-        summoner_level = participant_data['champLevel']
-        return(summoner_level)
-    
+class Get_Summoner_Dmg_Level:    
     def get_damage_to_buildings(self, match_data, participant_id):
         participant_data = None
         for participant in match_data['info']['participants']:

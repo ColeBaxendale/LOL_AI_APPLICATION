@@ -1,2 +1,2 @@
-MatchID,SummonerTeam,Level,TotalBuildingDamage,DamageToChampions,DamagePerMinute,CSPerMinute,GoldPerMinute,BaronKills,DragonKills,RiftHeraldKills,InhibitorKills,TowerKills,Win
-NA1_4856973554,1,13,3252,14114,461.85,7.1,384.49,0,1,0,0,4,False
+MatchID,SummonerTeam,TotalBuildingDamage,DamageToChampions,DamagePerMinute,CSPerMinute,GoldPerMinute,BaronKills,DragonKills,RiftHeraldKills,InhibitorKills,TowerKills,Win
+NA1_4856973554,1,3252,14114,461.85,7.1,384.49,0,1,0,0,4,0

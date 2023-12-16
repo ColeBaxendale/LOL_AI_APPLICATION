@@ -40,7 +40,6 @@ class Data_To_CSV:
             summoner_id = summoner.id
             summoner_champion = summoner.champion
             summoner_team = summoner.team
-            summoner_level = get_summoner_dmg_level_instance.get_summoner_level(match["match_data"], summoner_id)
             total_building_dmg = get_summoner_dmg_level_instance.get_damage_to_buildings(match["match_data"], summoner_id)
             damage_to_champs = get_summoner_dmg_level_instance.get_damage_to_champions(match["match_data"], summoner_id)
             damage_per_min = get_per_min_data_instance.get_damage_per_min(match["match_data"], summoner_id)
@@ -83,6 +82,12 @@ class Data_To_CSV:
             pd.DataFrame(kill_data).to_csv(kills_filename, index=False)
             pd.DataFrame(death_data).to_csv(deaths_filename, index=False)
             pd.DataFrame(assist_data).to_csv(assists_filename, index=False)
+            win = teams.get('win', False)
+            win_num = -1
+            if win == True:
+                win_num = 1
+            else:
+                win_num = 0
             summoner_team_num = -1
             if summoner.team == 'Blue':
                 summoner_team_num = 1
@@ -94,7 +99,6 @@ class Data_To_CSV:
                 'MatchID': match_id,
                 'SummonerTeam': summoner_team_num,
 
-                'Level': summoner_level,
                 'TotalBuildingDamage': total_building_dmg,
                 'DamageToChampions': damage_to_champs,
 
@@ -111,7 +115,7 @@ class Data_To_CSV:
                 'InhibitorKills': teams.get('inhibitor', 0),
                 'TowerKills': teams.get('tower', 0),
 
-                'Win': teams.get('win', False)
+                'Win': win_num
                 
             }
 
