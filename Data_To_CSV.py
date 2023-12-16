@@ -83,14 +83,16 @@ class Data_To_CSV:
             pd.DataFrame(kill_data).to_csv(kills_filename, index=False)
             pd.DataFrame(death_data).to_csv(deaths_filename, index=False)
             pd.DataFrame(assist_data).to_csv(assists_filename, index=False)
-
+            summoner_team_num = -1
+            if summoner.team == 'Blue':
+                summoner_team_num = 1
+            else:
+                summoner_team_num = 0
             
             # Create a dictionary for each match
             match_data_dict = {
                 'MatchID': match_id,
-
-                'SummonerID': summoner_id,
-                'SummonerTeam': summoner_team,
+                'SummonerTeam': summoner_team_num,
 
                 'Level': summoner_level,
                 'TotalBuildingDamage': total_building_dmg,
