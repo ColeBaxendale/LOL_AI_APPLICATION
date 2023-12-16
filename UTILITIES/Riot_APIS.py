@@ -13,7 +13,7 @@ class RiotApi:
         response.raise_for_status()
         return response.json().get("puuid")
 
-    def get_match_ids(self, puuid, num_matches=1):
+    def get_match_ids(self, puuid, num_matches=20):
         url = f'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count={num_matches}'
         headers = {'X-Riot-Token': self.API_KEY}
         response = requests.get(url, headers=headers)

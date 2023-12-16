@@ -91,7 +91,6 @@ class Data_To_CSV:
 
                 'SummonerID': summoner_id,
                 'SummonerTeam': summoner_team,
-                'Champion': summoner_champion,
 
                 'Level': summoner_level,
                 'TotalBuildingDamage': total_building_dmg,
